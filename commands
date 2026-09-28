@@ -1,3 +1,5 @@
+docker network create dbnw
+docker volume create vol1
 # Three db containers cannot share same volume. Hence we are creating a master-container, to which any host can be added (using MYSQL_ROOT_HOST=%), to this container we will attach the volume and network.
 docker run -d --name master-db-con --network dbnw --mount src=vol1,destination=/var/lib/mysql -e MYSQL_ROOT_HOST=% dbimg:latest
  
